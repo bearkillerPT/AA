@@ -26,7 +26,7 @@ To generate a graph with n vertexs and save it run:
 ```
     python3 Graph.py -save n
 ```
-After this a file called graph_n.json will appear in a Graph named dir.
+After this a file called graph_n.json will appear in a Graphs named dir.
 
 ## exaustive__alg.py :
     This is an exaustive search algorith. After generating the graph with n vertexs run:
