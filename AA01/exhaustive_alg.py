@@ -34,8 +34,9 @@ def calculateMaxIndependetSet(graph: Graph) -> set:
     vertexs_half = int((graph.total_vertexs + 1) / 2) #No need to check past half of the number of vertexes.
     res = []
     for i in range(vertexs_half):
-        non_adjacent_vertexs = findNonAdjecentVertexes(graph, graph.vertexs[i])            
-        if len(non_adjacent_vertexs) + 1 > len(res):
+        non_adjacent_vertexs = findNonAdjecentVertexes(graph, graph.vertexs[i])
+        #this list includesgraph.vertexs[i]         
+        if len(non_adjacent_vertexs) > len(res):
             res = copy.deepcopy(non_adjacent_vertexs)
     return res
 
