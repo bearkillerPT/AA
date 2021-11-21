@@ -7,7 +7,7 @@ import copy
 import json
         
 class Graph:
-    def __init__(self, total_vertexs):
+    def __init__(self, total_vertexs:int):
             random.seed(88194)
             self.total_vertexs = total_vertexs
             self.vertexs = self.generateVertexs()
@@ -20,7 +20,7 @@ class Graph:
         edges_dump = [v.toJSON() for v in self.edges]
         json.dump({'vertexs': vertex_dump, 'edges': edges_dump}, save_file)
         
-    def loadGraph(vertex_count):
+    def loadGraph(vertex_count: int):
         save_file_name = 'Graphs/graph_' + str(vertex_count) + '.json'
         save_file = open(save_file_name, 'r')
         context = json.load(save_file)
@@ -90,6 +90,6 @@ if __name__ == '__main__':
         print('Usage:\npython3 Graph.py vertex_count')
     elif len(sys.argv) == 2:
         total_vertexs = int(sys.argv[1])
-        a = Graph(total_vertexs)
-        print(a.vertexs)
-        print(a.edges)
+        graph = Graph(total_vertexs)
+        print(graph.vertexs)
+        print(graph.edges)

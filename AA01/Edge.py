@@ -2,11 +2,11 @@ import json
 
 from Vertex import Vertex
 class Edge:
-    def __init__(self, vertex1, vertex2):
+    def __init__(self, vertex1:int, vertex2:int):
         self.vertex1 = vertex1
         self.vertex2 = vertex2
 
-    def containsVertex(self, vertex):
+    def containsVertex(self, vertex:Vertex):
         if vertex == self.vertex1 or vertex == self.vertex2:
             return True
         return False
