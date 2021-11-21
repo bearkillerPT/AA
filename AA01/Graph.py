@@ -87,9 +87,17 @@ class Graph:
 
 if __name__ == '__main__':
     if len(sys.argv) == 1:
-        print('Usage:\npython3 Graph.py vertex_count')
-    elif len(sys.argv) == 2:
-        total_vertexs = int(sys.argv[1])
+        print('Usage:\npython3 Graph.py [-save] vertex_count')
+    else:
+        if len(sys.argv) == 2:
+            total_vertexs = int(sys.argv[1])
+            
+        elif len(sys.argv) == 3:
+            total_vertexs = int(sys.argv[2])
         graph = Graph(total_vertexs)
         print(graph.vertexs)
         print(graph.edges)
+        if len(sys.argv) == 3:
+            graph.saveGraph()
+
+    
