@@ -1,3 +1,5 @@
+import json
+
 class Vertex:
     def __init__(self, x, y):
         if x in range(1,10) and y in range(1,10):
@@ -11,3 +13,9 @@ class Vertex:
 
     def __eq__(self, o: object) -> bool:
         return self.x == o.x and self.y == o.y
+
+    def toJSON(self):
+        return (self.x,self.y)
+
+    def fromJSON(json_obj):
+        return Vertex(json_obj[0], json_obj[1])

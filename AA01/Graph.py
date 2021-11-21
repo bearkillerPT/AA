@@ -1,17 +1,36 @@
+from json.encoder import JSONEncoder
 import random
 from Vertex import Vertex
 from Edge import Edge
 import sys
 import copy
+import json
         
 class Graph:
     def __init__(self, total_vertexs):
-        random.seed(88194)
-        self.total_vertexs = total_vertexs
-        inserted_vertexs = 0
-        self.vertexs = self.generateVertexs()
-        self.edges = self.generateEdges()
-        print(self.edges)
+            random.seed(88194)
+            self.total_vertexs = total_vertexs
+            self.vertexs = self.generateVertexs()
+            self.edges = self.generateEdges()
+
+    def saveGraph(self):
+        save_file_name = 'Graphs/graph_' + str(self.total_vertexs) + '.json'
+        save_file = open(save_file_name, 'w')
+        vertex_dump = [v.toJSON() for v in self.vertexs]
+        edges_dump = [v.toJSON() for v in self.edges]
+        json.dump({'vertexs': vertex_dump, 'edges': edges_dump}, save_file)
+        
+    def loadGraph(vertex_count):
+        save_file_name = 'Graphs/graph_' + str(vertex_count) + '.json'
+        save_file = open(save_file_name, 'r')
+        context = json.load(save_file)
+        res = Graph(0)
+        res.total_vertexs = vertex_count
+        res.vertexs = [Vertex.fromJSON(v) for v in context['vertexs']]
+        res.edges = [Edge.fromJSON(e) for e in context['edges']]
+        return res
+        
+
 
     def generateEdges(self):
         edges = []
@@ -70,5 +89,7 @@ if __name__ == '__main__':
     if len(sys.argv) == 1:
         print('Usage:\npython3 Graph.py vertex_count')
     elif len(sys.argv) == 2:
-        a = Graph(int(sys.argv[1]))
+        total_vertexs = int(sys.argv[1])
+        a = Graph(total_vertexs)
         print(a.vertexs)
+        print(a.edges)
