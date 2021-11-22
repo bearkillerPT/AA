@@ -34,6 +34,10 @@ After this a file called graph_n.json will appear in a Graphs named dir.
     python3 exhaustive_alg.py n
 ```
 
-    
-    
-
+# Visualization
+## GraphVisualizer.py :
+    This module allows you to chose a pre-generated graph with n vertexs and calculate the maximum independet set in a given algorithm x. Usage:
+```
+    python3 GraphVisualizer.py n x
+        x: (greedy|algorithm)
+```
