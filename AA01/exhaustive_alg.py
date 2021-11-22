@@ -24,9 +24,9 @@ def findNonAdjecentVertexes(g: Graph, v: Vertex) -> list:
     if len(res) > 1:
         for j in range(len(res) - 1):
             for i in range(j, len(res)-1):
-                adjacent_vertexs = findAdjecentVertexes(g, res[j])
-                if res[i] in adjacent_vertexs:
-                    res.remove(res[i])
+                adjacent_vertexs = findAdjecentVertexes(g, res[i])
+                if res[j] in adjacent_vertexs:
+                    res.remove(res[j])
         
     return res
 
