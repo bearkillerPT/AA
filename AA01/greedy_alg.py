@@ -22,11 +22,13 @@ def findNonAdjecentVertexes(g: Graph, vertexs: list) -> list:
         if adjacent_vertexs == None:
             continue 
         for vertex in g.vertexs:
-            if vertex not in adjacent_vertexs and vertex not in res:
-                res.append(vertex)
-                
-            elif vertex in adjacent_vertexs and vertex in res:
-                res.remove(vertex)
+            if vertex in res:
+                if vertex in adjacent_vertexs :
+                    res.remove(vertex)
+            else:
+                if vertex not in adjacent_vertexs:
+                    res.append(vertex)
+            
             
             
     
