@@ -7,7 +7,7 @@ from greedy_alg import calculateMaxIndependetSet as greedy_alg
 
 def showMaximumIndependetSet(maximum_indepedent_set : list):
   points = []
-  for vertex in maximum_independet_set:
+  for vertex in maximum_indepedent_set:
     points.append([vertex.x, vertex.y])
   points = numpy.array(points)
   x = points[:, 0].flatten()
