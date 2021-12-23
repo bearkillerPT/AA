@@ -1,0 +1,32 @@
+import sys
+comps = 0
+class ExactCounter():
+    def __init__(self, filename):
+        fp = open(filename, "r")
+        self.index = self.parse(fp)
+
+    def parse(self, fp):
+        global comps
+        index = {}
+        for line in fp.readlines():
+            for word in line.split(' '):
+                for char in word:
+                    if char in index.keys():
+                        index[char] += 1
+                    else:    
+                        index[char] = 1
+                    comps += 1
+        return index
+
+if __name__ == "__main__":
+    min_length_filter=0
+    stop_word_list = []
+    porter_stemmer = True
+    if len(sys.argv) == 1:
+        usage = 'Usage:\n\tpython3 ExactCounter.py filename'
+        print(usage)
+    elif len(sys.argv) == 2:
+        exact_counter = ExactCounter(sys.argv[1])
+        index_sorted_by_value = dict(sorted(exact_counter.index.items(), key=lambda item: item[1], reverse=True))
+        print(index_sorted_by_value)
+        print("Comps: " + str(comps))
