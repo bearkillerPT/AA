@@ -28,5 +28,6 @@ if __name__ == "__main__":
     elif len(sys.argv) == 2:
         exact_counter = ExactCounter(sys.argv[1])
         index_sorted_by_value = dict(sorted(exact_counter.index.items(), key=lambda item: item[1], reverse=True))
+        print("Count:")
         print(index_sorted_by_value)
         print("Comps: " + str(comps))

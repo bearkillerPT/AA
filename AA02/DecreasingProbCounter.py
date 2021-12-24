@@ -11,19 +11,20 @@ class DecreasingProbCounter():
         global comps
         index = {}
         i = 0
-        current_prob = 1
+        prob = prob_decrease(i)
+
         for line in fp.readlines():
             for word in line.split(' '):
                 for char in word:
                     to_count = random.random()
-                    if to_count <= current_prob:
+                    if to_count <= prob:
                         if char in index.keys():
                             index[char] += 1
                         else:    
                             index[char] = 1
                         comps += 1
                         i += 1
-                        current_prob = current_prob + prob_decrease(i)
+                        prob = prob_decrease(i)
                     comps += 1
         return index
 
@@ -36,6 +37,13 @@ if __name__ == "__main__":
         print(usage)
     elif len(sys.argv) == 2:
         exact_counter = DecreasingProbCounter(sys.argv[1])
+        expected_counts = {}
+        for char in exact_counter.index:
+            expected_counts[char] =  math.floor(math.log(exact_counter.index[char] ,math.sqrt(3))) + 1
         index_sorted_by_value = dict(sorted(exact_counter.index.items(), key=lambda item: item[1], reverse=True))
+        expected_index_sorted_by_value = dict(sorted(expected_counts.items(), key=lambda item: item[1], reverse=True))
+        print("Counter")
         print(index_sorted_by_value)
+        print("Expected counts")
+        print(expected_index_sorted_by_value)
         print("Comps: " + str(comps))

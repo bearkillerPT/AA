@@ -31,6 +31,13 @@ if __name__ == "__main__":
         print(usage)
     elif len(sys.argv) == 2:
         exact_counter = FixedProbCounter(sys.argv[1])
+        expected_index_sorted_by_value = {}
+        for char in exact_counter.index:
+            expected_index_sorted_by_value[char] = exact_counter.index[char] * 4
         index_sorted_by_value = dict(sorted(exact_counter.index.items(), key=lambda item: item[1], reverse=True))
+        expected_index_sorted_by_value = dict(sorted(expected_index_sorted_by_value.items(), key=lambda item: item[1], reverse=True))
         print(index_sorted_by_value)
+        print("Expected count:")
+        print(expected_index_sorted_by_value)
         print("Comps: " + str(comps))
+        
