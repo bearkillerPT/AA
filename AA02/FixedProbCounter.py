@@ -23,6 +23,7 @@ class FixedProbCounter():
         return index
 
 if __name__ == "__main__":
+    random.seed(88194)
     min_length_filter=0
     stop_word_list = []
     porter_stemmer = True
