@@ -6,7 +6,7 @@ class FixedProbCounter():
         fp = open(filename, "r")
         self.index = self.count_fixed_prob(fp, prob)
 
-    def count_fixed_prob(self, fp, prob):
+    def count_fixed_prob(self, fp, prob=0.25):
         global comps
         index = {}
         for line in fp.readlines():
