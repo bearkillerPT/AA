@@ -2,7 +2,7 @@ import sys
 comps = 0
 class ExactCounter():
     def __init__(self, filename):
-        fp = open(filename, "r")
+        fp = open(filename, "r", encoding='utf-8')
         self.index = self.parse(fp)
 
     def parse(self, fp):
