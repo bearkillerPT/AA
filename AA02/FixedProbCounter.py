@@ -10,6 +10,7 @@ class FixedProbCounter():
         global comps
         index = {}
         for line in fp.readlines():
+            line = "".join(filter(str.isalpha,line))
             for word in line.split(' '):
                 for char in word:
                     to_count = random.random()

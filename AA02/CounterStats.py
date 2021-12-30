@@ -1,5 +1,6 @@
 from os import stat
 import sys
+import math
 import json
 from ExactCounter import ExactCounter
 from FixedProbCounter import FixedProbCounter
@@ -22,8 +23,14 @@ class CounterStats():
         exact_counter = ExactCounter(filename)
         for char in index:
             index[char]["avg"] = index[char]["sum"] / index[char]["count"]
-            index[char]["expected"] = index[char]["avg"] * 4
             index[char]["exact_val"] = exact_counter.index[char]
+            if counter_type == "fixed_prob":
+                index[char]["expected"] = int(index[char]["avg"] * 4)
+            if counter_type == "decreasing_prob":   
+                index[char]["expected"] =  int(math.sqrt(3)**index[char]["avg"] - math.sqrt(3) + 1) / (math.sqrt(3) - 1)
+            index[char]["abs_err"] = abs(index[char]["expected"] - index[char]["exact_val"])
+            index[char]["rel_err"] = int(abs(index[char]["expected"] - index[char]["exact_val"]) / index[char]["exact_val"]*10000)/100
+
             del index[char]["sum"]
             del index[char]["count"]
         self.index = dict(sorted(index.items(), key=lambda item: item[1]["avg"], reverse=True))

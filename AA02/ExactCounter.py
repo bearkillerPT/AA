@@ -9,6 +9,7 @@ class ExactCounter():
         global comps
         index = {}
         for line in fp.readlines():
+            line = "".join(filter(str.isalpha,line))
             for word in line.split(' '):
                 for char in word:
                     if char in index.keys():
