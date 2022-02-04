@@ -47,3 +47,4 @@ if __name__ == "__main__":
         print("Count:")
         print(index_sorted_by_value)
         print("Comps: " + str(comps))
+        print("Exec Time: " + str(lossy_boy.index_time))

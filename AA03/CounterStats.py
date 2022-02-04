@@ -18,7 +18,7 @@ class CounterStats():
             index[word]["abs_err"] = abs(index[word]["expected"] - index[word]["exact_val"])
             if(index[word]["abs_err"] == 0):
                 self.zero_abs_err_count += 1
-            index[word]["rel_err"] = str(int(abs(index[word]["expected"] - index[word]["exact_val"]) / index[word]["exact_val"]*10000)/100) + "%"
+            index[word]["rel_err"] = str(int(abs(index[word]["expected"] - index[word]["exact_val"]) / index[word]["exact_val"]*100)/100) + "%"
         self.index = dict(sorted(index.items(), key=lambda item: item[1]["abs_err"], reverse=True))
 
 if __name__ == "__main__":
