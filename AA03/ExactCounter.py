@@ -8,7 +8,7 @@ class ExactCounter():
     def parse(self, fp):
         global comps
         index = {}
-        for line in fp.readlines():
+        for line in fp.read().splitlines():
             for word in line.split(' '):
                 if word in index.keys():
                     index[word] += 1

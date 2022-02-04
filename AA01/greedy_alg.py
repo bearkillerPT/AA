@@ -1,7 +1,6 @@
 import sys
 from Graph import Graph
 from Vertex import Vertex
-import copy
 comps = 0
 
 

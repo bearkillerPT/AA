@@ -1,34 +1,38 @@
 import sys
 import math
+import copy
+from datetime import date, datetime
 
 comps = 0
 class LossyCount():
     def __init__(self, filename, k):
+        time_start = datetime.now()
         fp = open(filename, "r", encoding='utf-8')
         self.index = self.count(fp, k)
+        time_end = datetime.now()
+        self.index_time = time_end - time_start
 
     def count(self, fp, k):
         global comps
         index = {}
-        n = 0
+        self.n = 0
         delta = 0
-        for line in fp.readlines():
+        for line in fp.read().splitlines():
             for word in line.split(' '):
-                n += 1
+                self.n += 1
                 if word in index.keys():
                     index[word] += 1
                 else:
                     index[word] = 1 + delta
                 comps += 1
-        res = {}
-        if math.floor(n/k) != delta:
-            comps += 1
-            delta = math.floor(n/k)
-            for word in index.keys():
-                comps += 1
-                if index[word] >= delta:
-                    res[word] = index[word]
-        return res
+                if math.floor(self.n/k) != delta:
+                    delta = math.floor(self.n/k)
+                    index_keys = copy.deepcopy(set(index.keys()))
+                    for word in index_keys:
+                        comps += 1
+                        if index[word] < delta:
+                            index.pop(word)
+        return index
 
 if __name__ == "__main__":
     min_length_filter=0
